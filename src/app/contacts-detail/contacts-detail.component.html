@@ -22,8 +22,14 @@
       </dl>
     </md-card-content>
     <md-card-actions fxLayout fxLayoutAlign="center center">
-      <a md-button (click)="edit.emit()" title="Edit {{contact?.name}}">Edit</a>
-      <a md-button (click)="back.emit()" title="Go back to list">Go Back</a>
+      <button type="button" 
+      	md-button 
+      	(click)="edit.emit(contact)" 
+      	title="Edit {{contact?.name}}">Edit</button>
+      <button type="button" 
+      	md-button 
+      	(click)="back.emit()" 
+      	title="Go back to list">Go Back</button>
     </md-card-actions>
   </md-card>
 </div>

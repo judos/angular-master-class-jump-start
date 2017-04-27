@@ -10,8 +10,8 @@ export class ContactsDetailComponent implements OnInit {
 
   @Input() contact: Contact;
 
-  @Output() edit = new EventEmitter();
-  @Output() back = new EventEmitter();
+  @Output() edit = new EventEmitter<void>();
+  @Output() back = new EventEmitter<Contact>();
 
   constructor() { }
 
