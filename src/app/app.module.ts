@@ -17,6 +17,8 @@ import { ContactsService } from './contacts.service';
 import { APP_ROUTES } from './app.routes';
 import { API_ENDPOINT } from './app.tokens';
 import { ContactsDetailViewComponent } from './contacts-detail-view/contacts-detail-view.component';
+import { TabComponent } from './tabs/tab.component';
+import { TabsComponent } from './tabs/tabs.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { ContactsDetailViewComponent } from './contacts-detail-view/contacts-det
     ContactsListComponent,
     ContactsDetailComponent,
     ContactsEditorComponent,
-    ContactsDetailViewComponent
+    ContactsDetailViewComponent,
+    TabComponent,
+    TabsComponent
   ],
   imports: [
     BrowserModule,
