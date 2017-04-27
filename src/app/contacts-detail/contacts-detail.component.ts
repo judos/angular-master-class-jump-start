@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Contact } from '../models/contact';
+import { EventBusService } from '../event-bus.service';
 
 @Component({
   selector: 'trm-contacts-detail',
@@ -13,10 +14,10 @@ export class ContactsDetailComponent implements OnInit {
   @Output() edit = new EventEmitter<void>();
   @Output() back = new EventEmitter<Contact>();
 
-  constructor() { }
+  constructor(private eventBusService: EventBusService) { }
 
   ngOnInit() {
-
+    this.eventBusService.emit('appTitleChange', 'Contact details');
   }
 
 }

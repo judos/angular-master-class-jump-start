@@ -13,12 +13,13 @@ import { ContactsDetailComponent } from './contacts-detail/contacts-detail.compo
 import { ContactsEditorComponent } from './contacts-editor/contacts-editor.component';
 
 import { ContactsService } from './contacts.service';
-
+import { EventBusService } from './event-bus.service';
 import { APP_ROUTES } from './app.routes';
 import { API_ENDPOINT } from './app.tokens';
 import { ContactsDetailViewComponent } from './contacts-detail-view/contacts-detail-view.component';
 import { TabComponent } from './tabs/tab.component';
 import { TabsComponent } from './tabs/tabs.component';
+
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { TabsComponent } from './tabs/tabs.component';
   ],
   providers: [
     ContactsService,
-    { provide: API_ENDPOINT, useValue: 'http://localhost:4201/api' }
+    { provide: API_ENDPOINT, useValue: 'http://localhost:4201/api' },
+    EventBusService
   ],
   bootstrap: [ContactsAppComponent]
 })

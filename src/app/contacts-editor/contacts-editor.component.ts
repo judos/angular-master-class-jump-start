@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Contact } from '../models/contact';
 import { ContactsService } from '../contacts.service';
+import { EventBusService } from '../event-bus.service';
 
 @Component({
   selector: 'trm-contacts-editor',
@@ -11,15 +12,17 @@ import { ContactsService } from '../contacts.service';
 export class ContactsEditorComponent implements OnInit {
 
   // we need to initialize since we can't use ?. operator with ngModel
-  contact: Contact = <Contact>{ address: {}};
+  contact: Contact = <Contact>{ address: {} };
 
   constructor(private contactsService: ContactsService,
-              private router: Router,
-              private route: ActivatedRoute) {}
+    private router: Router,
+    private route: ActivatedRoute,
+    private eventBusService: EventBusService) { }
 
   ngOnInit() {
     this.contactsService.getContact(this.route.snapshot.paramMap.get('id'))
-                        .subscribe(contact => this.contact = contact);
+      .subscribe(contact => this.contact = contact);
+    this.eventBusService.emit('appTitleChange', 'Edit Contact details');
   }
 
   cancel(contact: Contact) {
@@ -27,12 +30,12 @@ export class ContactsEditorComponent implements OnInit {
   }
 
   save(contact: Contact) {
-   this.contactsService.updateContact(contact)
-                       .subscribe(() => this.goToDetails(contact));
+    this.contactsService.updateContact(contact)
+      .subscribe(() => this.goToDetails(contact));
   }
 
   private goToDetails(contact: Contact) {
-    this.router.navigate(['/contact', contact.id ]);
+    this.router.navigate(['/contact', contact.id]);
   }
 }
 
