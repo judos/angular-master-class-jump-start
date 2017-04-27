@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { TabsComponent } from './tabs.component';
 
 @Component({
   selector: 'trm-tab',
@@ -11,10 +10,10 @@ export class TabComponent implements OnInit {
   selected = false;
   @Input() title = '';
 
-  constructor(private tabs: TabsComponent) { }
+  constructor() { }
 
   ngOnInit() {
-    this.tabs.addTab(this);
+
   }
 
 }
