@@ -8,7 +8,7 @@ import { TabComponent } from './tab.component';
 })
 export class TabsComponent implements OnInit {
 
-  tabsArray = [];
+  private tabs: Array<TabComponent> = [];
 
   constructor() { }
 
@@ -16,14 +16,14 @@ export class TabsComponent implements OnInit {
   }
 
   addTab(tab: TabComponent) {
-    this.tabsArray.push(tab);
-    if (this.tabsArray.length == 1) {
+    if (this.tabs.length == 0) {
       this.select(tab);
     }
+    this.tabs.push(tab);
   }
 
   select(tab: TabComponent) {
-    this.tabsArray.forEach(tab => tab.selected = false);
+    this.tabs.forEach(tab => tab.selected = false);
     tab.selected = true;
   }
 
