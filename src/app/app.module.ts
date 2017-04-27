@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { MaterialModule } from '@angular/material';
@@ -43,7 +43,11 @@ import { TabsComponent } from './tabs/tabs.component';
   providers: [
     ContactsService,
     { provide: API_ENDPOINT, useValue: 'http://localhost:4201/api' },
-    EventBusService
+    EventBusService,
+    // essentially the same:
+    // { provide: EventBusService, useClass: EventBusService }
+    Title
+
   ],
   bootstrap: [ContactsAppComponent]
 })
