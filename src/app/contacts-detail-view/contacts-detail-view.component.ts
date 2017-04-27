@@ -19,11 +19,14 @@ export class ContactsDetailViewComponent implements OnInit {
 
 
   ngOnInit() {
-    this.route.paramMap.subscribe(paramMap => {
-      var contactId = paramMap.get('id');
-      this.contactsService.getContact(contactId)
-        .subscribe(contact => this.contact = contact);
-    });
+    //    this.route.paramMap.subscribe(paramMap => {
+    //      var contactId = paramMap.get('id');
+    //      this.contactsService.getContact(contactId)
+    //        .subscribe(contact => this.contact = cont;
+    //    });
+    
+    this.route.paramMap.switchMap(paramMap => this.contactsService.getContact(paramMap.get('id')))
+      .subscribe(contact => this.contact = contact);
   }
 
   private navigateToEditor(contact: Contact) {

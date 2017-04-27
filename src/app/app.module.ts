@@ -23,6 +23,13 @@ import { ContactsDashboardComponent } from './contacts-dashboard/contacts-dashbo
 import { AboutComponent } from './about/about.component';
 
 
+
+// Needs to be an exported function for AOT to work
+export function doConfirm() {
+  return window.confirm('Navigate away without saving?');
+}
+
+
 @NgModule({
   declarations: [
     ContactsAppComponent,
@@ -50,11 +57,12 @@ import { AboutComponent } from './about/about.component';
     EventBusService,
     // essentially the same:
     // { provide: EventBusService, useClass: EventBusService }
-    Title
-
+    Title,
+    { provide: 'ConfirmNavigationGuard', useValue: doConfirm }
   ],
   bootstrap: [ContactsAppComponent]
 })
 export class ContactsModule {
 
 }
+
