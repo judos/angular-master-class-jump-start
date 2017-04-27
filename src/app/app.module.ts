@@ -25,8 +25,8 @@ import { AboutComponent } from './about/about.component';
 
 
 // Needs to be an exported function for AOT to work
-export function doConfirm() {
-  return window.confirm('Navigate away without saving?');
+export function canDeactivate(component) {
+  return !component.hasChanges || window.confirm('Navigate away without saving?');
 }
 
 
@@ -58,7 +58,7 @@ export function doConfirm() {
     // essentially the same:
     // { provide: EventBusService, useClass: EventBusService }
     Title,
-    { provide: 'ConfirmNavigationGuard', useValue: doConfirm }
+    { provide: 'ConfirmNavigationGuard', useValue: canDeactivate }
   ],
   bootstrap: [ContactsAppComponent]
 })

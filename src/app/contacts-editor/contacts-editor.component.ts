@@ -13,6 +13,7 @@ export class ContactsEditorComponent implements OnInit {
 
   // we need to initialize since we can't use ?. operator with ngModel
   contact: Contact = <Contact>{ address: {} };
+  hasChanges: boolean = true;
 
   constructor(private contactsService: ContactsService,
     private router: Router,
@@ -30,8 +31,12 @@ export class ContactsEditorComponent implements OnInit {
   }
 
   save(contact: Contact) {
+    this.hasChanges = false;
     this.contactsService.updateContact(contact)
-      .subscribe(() => this.goToDetails(contact));
+      .subscribe(() => {
+        this.goToDetails(contact);
+        this.eventBusService.emit('contactUpdated', {});
+      });
   }
 
   private goToDetails(contact: Contact) {
